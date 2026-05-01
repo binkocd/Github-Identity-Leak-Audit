@@ -1,0 +1,45 @@
+name: Security Audit - Identity Leaks
+
+on:
+  schedule:
+    - cron: '0 2 * * 0' # Runs at 02:00 UTC every Sunday
+  workflow_dispatch: # Allows manual triggering from the UI
+
+jobs:
+  audit-identity:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          # cache: 'pip' # Add this back if you create a requirements.txt
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyGithub
+
+      - name: Run GitHub Audit Script
+        env:
+          # Secrets
+          GH_PAT: ${{ secrets.GH_PAT_AUDIT }}
+          HOME_REPO: ${{ github.repository }}
+          # Variables
+          AUTHORIZED_NAME: ${{ vars.AUTHORIZED_NAME }}
+          UNAUTHORIZED_NAMES: ${{ vars.UNAUTHORIZED_NAMES }}
+          UNAUTHORIZED_EMAILS: ${{ vars.UNAUTHORIZED_EMAILS }}
+        run: |
+          python audit_github.py
+
+      - name: Upload Audit Results CSV
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: audit-results
+          path: audit_results.csv
+          retention-days: 7
