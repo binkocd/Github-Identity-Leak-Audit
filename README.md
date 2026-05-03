@@ -1,12 +1,10 @@
-# GitHub Identity Security Auditor
-<img src="Sniffer.png" alt="drawing" width="200"/>
+# SNIFR: Security, Name & Identity Forensic Remediator
+<img src="Sniffer.png" alt="drawing" width="200"/><br>
+🛡️ Overview
 
-## 🛡️ Overview
-The **GitHub Identity Security Auditor** is an automated tool designed to scan all repositories owned by an authenticated GitHub user for identity leaks in the Git commit history. 
+In high-velocity development environments, identity fragmentation is a silent technical debt. SNIFR is a proactive security governance framework designed for account-wide identity integrity audits and high-assurance history remediation across distributed Git environments.
 
-In environments where separating personal and professional identities is critical, misconfigured local Git environments can easily leak real names or personal email addresses into public repositories. This tool acts as a safeguard, scanning your entire footprint to ensure all commits conform to a strictly authorized Git identity.
-
-Any commit matching your specified unauthorized names or emails—or failing to use the correct GitHub `noreply` email—will be flagged.
+Engineered as a modular Python orchestration suite, SNIFR acts as a persistent sentry for your GitHub footprint. It utilizes GitHub Actions for continuous telemetry and implements ephemeral, isolated virtual environments to execute idempotent, forensic-grade history rewrites. It ensures all commits across your entire history conform to a strictly authorized Git identity, flagging any match for unauthorized names, personal emails, or commits failing to use the official GitHub `noreply` privacy format.
 
 ---
 
@@ -18,7 +16,7 @@ Because this tool creates GitHub Issues containing details about your leaked ide
 
 1. Click the green **Use this template** button at the top of this repository.
 2. Select **Create a new repository**.
-3. Name your repository (e.g., `github-identity-auditor`).
+3. Name your repository (e.g., `SNIFR`).
 4. **CRITICAL:** Set the visibility to **Private**.
 5. Click **Create repository**.
 6. Clone your newly created private repository to your local machine to continue setup.
@@ -51,7 +49,7 @@ You must define your identity rules using GitHub Actions Secrets and Variables.
 
 ### Step 4: Run the Audit
 1. Navigate to the **Actions** tab in your repository.
-2. Select **Security Audit - Identity Leaks** from the sidebar.
+2. Select **SNIFR Identity Audit** from the sidebar.
 3. Click **Run workflow**.
 4. Check the **Issues** tab for your `[SECURITY-AUDIT]` report once the run completes!
 
