@@ -1,4 +1,5 @@
 # GitHub Identity Security Auditor
+<img src="Sniffer.png" alt="drawing" width="200"/>
 
 ## 🛡️ Overview
 The **GitHub Identity Security Auditor** is an automated tool designed to scan all repositories owned by an authenticated GitHub user for identity leaks in the Git commit history. 
